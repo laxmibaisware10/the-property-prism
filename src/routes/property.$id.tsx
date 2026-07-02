@@ -96,17 +96,16 @@ function PropertyPage() {
         <div className="lg:col-span-8 space-y-16">
           {/* Quick facts */}
           <div className="grid grid-cols-2 gap-px bg-border md:grid-cols-4">
-            {[
-              [Bed, "Configuration", p.config],
-              [Ruler, "Area", p.area],
-              [Calendar, "Possession", p.possession],
-              [Shield, "RERA", "Verified ✓"],
-            ].map(([Icon, l, v], i) => (
-              <div key={l as string} className="bg-background p-6">
-                {/* @ts-expect-error dynamic icon */}
+            {([
+              { Icon: Bed, l: "Configuration", v: p.config },
+              { Icon: Ruler, l: "Area", v: p.area },
+              { Icon: Calendar, l: "Possession", v: p.possession },
+              { Icon: Shield, l: "RERA", v: "Verified ✓" },
+            ] as const).map(({ Icon, l, v }) => (
+              <div key={l} className="bg-background p-6">
                 <Icon className="size-4 text-brass" strokeWidth={1.5} />
-                <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">{l as string}</p>
-                <p className="mt-1 font-medium">{v as string}</p>
+                <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">{l}</p>
+                <p className="mt-1 font-medium">{v}</p>
               </div>
             ))}
           </div>
