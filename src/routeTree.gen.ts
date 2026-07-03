@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ToursRouteImport } from './routes/tours'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RentRouteImport } from './routes/rent'
 import { Route as PostPropertyRouteImport } from './routes/post-property'
@@ -26,6 +27,11 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PropertyIdRouteImport } from './routes/property.$id'
 
+const ToursRoute = ToursRouteImport.update({
+  id: '/tours',
+  path: '/tours',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/post-property': typeof PostPropertyRoute
   '/rent': typeof RentRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tours': typeof ToursRoute
   '/property/$id': typeof PropertyIdRoute
 }
 export interface FileRoutesByTo {
@@ -141,6 +148,7 @@ export interface FileRoutesByTo {
   '/post-property': typeof PostPropertyRoute
   '/rent': typeof RentRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tours': typeof ToursRoute
   '/property/$id': typeof PropertyIdRoute
 }
 export interface FileRoutesById {
@@ -160,6 +168,7 @@ export interface FileRoutesById {
   '/post-property': typeof PostPropertyRoute
   '/rent': typeof RentRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tours': typeof ToursRoute
   '/property/$id': typeof PropertyIdRoute
 }
 export interface FileRouteTypes {
@@ -180,6 +189,7 @@ export interface FileRouteTypes {
     | '/post-property'
     | '/rent'
     | '/sitemap.xml'
+    | '/tours'
     | '/property/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -198,6 +208,7 @@ export interface FileRouteTypes {
     | '/post-property'
     | '/rent'
     | '/sitemap.xml'
+    | '/tours'
     | '/property/$id'
   id:
     | '__root__'
@@ -216,6 +227,7 @@ export interface FileRouteTypes {
     | '/post-property'
     | '/rent'
     | '/sitemap.xml'
+    | '/tours'
     | '/property/$id'
   fileRoutesById: FileRoutesById
 }
@@ -235,11 +247,19 @@ export interface RootRouteChildren {
   PostPropertyRoute: typeof PostPropertyRoute
   RentRoute: typeof RentRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ToursRoute: typeof ToursRoute
   PropertyIdRoute: typeof PropertyIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tours': {
+      id: '/tours'
+      path: '/tours'
+      fullPath: '/tours'
+      preLoaderRoute: typeof ToursRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -371,6 +391,7 @@ const rootRouteChildren: RootRouteChildren = {
   PostPropertyRoute: PostPropertyRoute,
   RentRoute: RentRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ToursRoute: ToursRoute,
   PropertyIdRoute: PropertyIdRoute,
 }
 export const routeTree = rootRouteImport
