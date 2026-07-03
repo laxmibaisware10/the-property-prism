@@ -18,6 +18,19 @@ export const IMG = {
   visit1,
   visit2,
   visit3,
+  // Backwards-compat aliases (legacy routes)
+  heroEstate: heroNagpur,
+  propMumbai: nagpurFlat,
+  propGoa: nagpurFarmhouse,
+  propGurgaon: nagpurCommercial,
+  propDelhi: nagpurBungalow,
+  propBangalore: nagpurFlat,
+  cityMumbai: nagpurFlat,
+  cityDelhi: nagpurBungalow,
+  cityBangalore: nagpurFlat,
+  cityHyderabad: nagpurCommercial,
+  cityPune: nagpurFarmhouse,
+  cityGoa: nagpurPlot,
 };
 
 export const BRAND = {
